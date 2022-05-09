@@ -1,0 +1,44 @@
+﻿@model Day6MvcApp.Models.User
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@{
+    AjaxOptions opt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "result"
+    };
+}
+
+
+
+
+@using (Ajax.BeginForm("CreateUser", opt))
+{
+
+
+    <h2>Current Users</h2>
+    <div id="result">
+
+        @Html.Action("GetAllUsers")
+
+    </div>
+
+
+    <p>
+        User Name: @Html.TextBoxFor(user => user.UserName)
+    </p>
+
+    <p>
+        Password: @Html.PasswordFor(user => user.Password)
+    </p>
+    <input type="submit" value="Create User" />
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
